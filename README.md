@@ -1,6 +1,3 @@
-FORMAT: 1A
-HOST: https://southamerica-east1-pontte-challenge-b7be1.cloudfunctions.net/
-
 # Pontte - API
 
 Uma API simples criada com o intuito de resolver o desafio da Pontte. Se trata de uma API para a listagem, cadastro e edição de contratos de empréstimos.
@@ -8,7 +5,7 @@ Uma API simples criada com o intuito de resolver o desafio da Pontte. Se trata d
 
 Todos os recursos desta API foram construidos sobre a arquitetura Serverless, usando para tal o Firebase Cloud Functions. Para o armazenamento dos dados e arquivos foram utilizados o Cloud Firestore que é um banco de dados não relacional (NoSQL) e o Cloud Storage respectivamente. Essa escolha se deu pela facilidade para a integração com os serviços do Firebase Functions.
 
-## Validação dos Dados [/validation]
+## Validação dos Dados
 
 Essa API conta com a validação de campos obrigatórios e também sobre os dados optativos, pois manter a integridade da base de dados é algo fundamental dentro da aplicação. As validações realizadas não são apenas da existência dos parâmetros, indo além. Exemplos:
 
@@ -45,7 +42,7 @@ Alguns parâmetros optativos devem seguir um padrão para que sejam validados, s
 
 * **Estado civil (maritalStatus)**: Valores válidos estão listados na lista ['']
 
-## Sanitização dos Dados [/sanitization]
+## Sanitização dos Dados
 
 A manutenção de um padrão dos dados é essencial para o controle e utilização do banco. Desssa forma esta API realiza a sanitização dos dados recebidos, com o intuito de deixar os mesmos campos de todos os documentos com uma mesma formatação, sendo elas:
 
@@ -57,10 +54,27 @@ A manutenção de um padrão dos dados é essencial para o controle e utilizaç�
 
 * **Valor do empréstimo e Renda mensal**: Padronizado como *float*
 
+## Tratamento de Exceções
+
+O controle das exceções também é realizado pela API, de forma a retornar um objeto contendo o erro que ocorreu na requisição, juntamente com mensagens expecificando onde esses erros ocorreram. Exemplo:
+
+        {
+        "errors": [
+            {
+            "type": "Invalid operation",
+            "message": "Only contracts in the state of 'upload files' can update files"
+            }
+        ]
+        }
 
 
 
-## Recursos da API [/endpoints]
+
+## Recursos da API
+
+Todas as requisições foram feitas por meio do Cliente HTTP **Insomnia**.
+
+**Nota: Para realizar as requisições, o método HTTP deve ser trocado por https://southamerica-east1-pontte-challenge-b7be1.cloudfunctions.net**
 
 ### Listar contratos [GET/list]
 
