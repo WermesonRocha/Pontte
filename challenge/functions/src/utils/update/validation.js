@@ -5,7 +5,7 @@ const AppError = require('../../errors/AppError');
 
 const validation = body => {
     const { uid } = body;
-    if (!uid) throw new AppError([{ type: 'Required parameter', field: 'uid', message: `User uid is required` }]);
+    if (!uid) throw new AppError([{ type: 'Required paramn', field: 'uid', message: `User uid is required` }]);
     return;
 }
 
