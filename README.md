@@ -40,11 +40,15 @@ Alguns parâmetros optativos devem seguir um padrão para que sejam validados, s
         
 * **Data de nascimento (birthDate)**: Utilizado uma regex que realiza a validação das datas, não aceitando datas inválidas como *45/12/2000*. O padrão utilizado é **dd/mm/aaaa**
 
-* **Estado civil (maritalStatus)**: Valores válidos estão listados na lista ['']
+* **Estado civil (maritalStatus)**: Valores válidos
+    * SINGLE
+    * MARRIED
+    * DIVORCIED
+    * WIDOWED
 
 ## Sanitização dos Dados
 
-A manutenção de um padrão dos dados é essencial para o controle e utilização do banco. Desssa forma esta API realiza a sanitização dos dados recebidos, com o intuito de deixar os mesmos campos de todos os documentos com uma mesma formatação, sendo elas:
+A manutenção de um padrão dos dados é essencial para o controle e utilização do banco. Dessa forma esta API realiza a sanitização dos dados recebidos, com o intuito de deixar os mesmos campos de todos os documentos com uma mesma formatação, sendo elas:
 
 * **Nome e Estado civil**: Padronizado para o *upperCase*
 
@@ -81,29 +85,29 @@ Todas as requisições foram feitas por meio do Cliente HTTP **Insomnia**.
 + Response 200 (application/json)
 
         [
-      {
-        "state": string,
-        "email": string,
-        "birthDate": string,
-        "monthlyIncome": number,
-        "amount": number,
-        "maritalStatus": string,
-        "status": string,
-        "address": {
-          "number": number,
-          "neighborhood": string,
-          "city": string,
-          "cep": string,
-          "complement": string,
-          "street": string,
-          "state": string
-        },
-        "imgUrls": [...],
-        "cpf": string,
-        "uid": string,
-        "name": string
-      }
-]
+            {
+                "state": string,
+                "email": string,
+                "birthDate": string,
+                "monthlyIncome": number,
+                "amount": number,
+                "maritalStatus": string,
+                "status": string,
+                "address": {
+                "number": number,
+                "neighborhood": string,
+                "city": string,
+                "cep": string,
+                "complement": string,
+                "street": string,
+                "state": string
+                },
+                "imgUrls": [...],
+                "cpf": string,
+                "uid": string,
+                "name": string
+            }
+        ]
 
 ### Criar contrato [POST/create]
 
