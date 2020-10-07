@@ -9,11 +9,13 @@ const updateDoc = require('../firebase/updateDoc');
 const getLoanData = require('../firebase/getLoanData');
 
 const updateFields = async (body, docId) => {
-    const { email, cpf, birthDate, address } = body;
+    const { email, cpf, birthDate, address, maritalStatus } = body;
+    const validStatus = ['SINGLE', 'MARRIED', 'DIVORCIED', 'WIDOWED'];
     const validFields = ['name', 'email', 'cpf', 'amount', 'monthlyIncome', 'birthDate', 'maritalStatus', 'address'];
     if (!Object.keys(body).some(key => validFields.includes(key))) throw new AppError([{ type: 'Invalid payload', message: `You cannot update these values in this state` }]);
     if (email && !validateEmail(email)) throw new AppError([{ type: 'Invalid paramn', message: `The email you are trying to register is invalid` }]);
     if (cpf && !validateCpf(cpf)) throw new AppError([{ type: 'Invalid paramn', message: `The cpf you are trying to register is invalid` }]);
+    if (maritalStatus && !validStatus.includes(maritalStatus.toUpperCase())) throw new AppError([{ type: 'Invalid paramn', message: `The marital status you are trying to register is invalid. Valid statuses: ${validStatus}` }]);
     if (address) {
         const [error, valid] = validateAddress(address);
         if (!valid) throw new AppError(error);
