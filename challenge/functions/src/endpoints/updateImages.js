@@ -61,7 +61,7 @@ const uploadImages = functions.region('southamerica-east1').https.onRequest(asyn
                             throw new AppError([{ type: 'Invalid operation', message: 'Only contracts in the state of \'upload files\' can update files' }]);
                         }
                     }
-                };
+                }
             } catch (error) {
                 console.log('ERROR:', error);
                 if (error instanceof AppError) return res.status(error.statusCode).send({ errors: error.message });
